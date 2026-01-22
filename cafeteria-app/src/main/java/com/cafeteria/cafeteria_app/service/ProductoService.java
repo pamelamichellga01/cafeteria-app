@@ -3,21 +3,15 @@ package com.cafeteria.cafeteria_app.service;
 import com.cafeteria.cafeteria_app.model.Producto;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProductoService {
 
-    private List<Producto> productos = new ArrayList<>();
+    private final List<Producto> productos;
 
-    public ProductoService() {
-        productos.add(new Producto("PO1", "Café Americano", 3000));
-        productos.add(new Producto("P02","Café Latte", 3500));
-        productos.add(new Producto("P03", "Capuchino", 4000 ));
-        productos.add(new Producto("P04", "Té", 2500));
-        productos.add(new Producto("P05", "Pan", 2000 ));
-        productos.add(new Producto("P06", "Pastel", 4500));
+    public ProductoService(List<Producto> productos) {
+        this.productos = List.copyOf(productos);
     }
 
     public List<Producto> obtenerProductos() {
