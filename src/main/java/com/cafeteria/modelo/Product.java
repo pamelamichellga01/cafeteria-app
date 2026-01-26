@@ -10,7 +10,8 @@ public class Product {
         this.nombre = nombre;
         this.precio = precio;
     }
-
+    //getters y setters
+    
     public String getCodigo() {
         return codigo;
     }
