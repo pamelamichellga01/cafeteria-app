@@ -1,4 +1,4 @@
-package com.cafeteria.componente;
+package com.cafeteria.modelo;
 
 import com.cafeteria.servicio.ProductService;
 import com.cafeteria.servicio.OrderService;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
+//menu de iniciacion
 public class MenuComponent implements CommandLineRunner {
     
     private final ProductService productService;

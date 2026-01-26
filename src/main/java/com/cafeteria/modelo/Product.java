@@ -11,7 +11,8 @@ public class Product {
         this.precio = precio;
     }
     //getters y setters
-    
+    //comentario
+
     public String getCodigo() {
         return codigo;
     }
@@ -19,7 +20,6 @@ public class Product {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-
     public String getNombre() {
         return nombre;
     }
