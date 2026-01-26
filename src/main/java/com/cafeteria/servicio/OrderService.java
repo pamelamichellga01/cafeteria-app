@@ -42,17 +42,7 @@ public class OrderService {
             }
             
             System.out.print("Ingrese la cantidad: ");
-            int cantidad;
-            try {
-                cantidad = Integer.parseInt(scanner.nextLine().trim());
-                if (cantidad <= 0) {
-                    System.out.println("La cantidad debe ser mayor a 0.");
-                    continue;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Cantidad inválida. Intente nuevamente.");
-                continue;
-            }
+            int cantidad = Integer.parseInt(scanner.nextLine().trim());
             
             OrderItem item = new OrderItem(producto, cantidad);
             pedido.agregarItem(item);
@@ -61,9 +51,7 @@ public class OrderService {
             
             System.out.print("¿Desea agregar otro producto? (S/N): ");
             String respuesta = scanner.nextLine().trim();
-            agregarMasProductos = respuesta.equalsIgnoreCase("S") || 
-                                 respuesta.equalsIgnoreCase("SI") ||
-                                 respuesta.equalsIgnoreCase("SÍ");
+            agregarMasProductos = respuesta.equalsIgnoreCase("S");
         }
         
         return pedido;
