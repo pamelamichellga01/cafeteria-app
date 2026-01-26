@@ -9,7 +9,6 @@ public class Order {
     private int numeroPedido;
     private LocalDateTime fecha;
     private List<OrderItem> items;
-    private static final double PORCENTAJE_IMPUESTO = 0.10;
 
     public Order(int numeroPedido) {
         this.numeroPedido = numeroPedido;
@@ -47,39 +46,34 @@ public class Order {
                 .sum();
     }
 
-    public double calcularImpuesto() {
-        return calcularSubtotal() * PORCENTAJE_IMPUESTO;
-    }
-
     public double calcularTotal() {
-        return calcularSubtotal() + calcularImpuesto();
+        return calcularSubtotal();
     }
 
     public String generarFactura() {
         StringBuilder factura = new StringBuilder();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
-        factura.append("========================================");
-        factura.append("         FACTURA DE PEDIDO");
-        factura.append("========================================");
-        factura.append(String.format("Pedido #: %d", numeroPedido));
-        factura.append(String.format("Fecha: %s", fecha.format(formatter)));
-        factura.append("========================================");
-        factura.append("DETALLE DE PRODUCTOS:");
-        factura.append("----------------------------------------");
+        factura.append("========================================\n");
+        factura.append("         FACTURA DE PEDIDO\n");
+        factura.append("========================================\n");
+        factura.append(String.format("Pedido #: %d%n", numeroPedido));
+        factura.append(String.format("Fecha: %s%n", fecha.format(formatter)));
+        factura.append("========================================\n");
+        factura.append("DETALLE DE PRODUCTOS:\n");
+        factura.append("----------------------------------------\n");
         
         for (OrderItem item : items) {
-            factura.append(String.format("%-20s x%d  $%.2f",
+            factura.append(String.format("%-20s x%d  $%.2f%n",
                 item.getProducto().getNombre(),
                 item.getCantidad(),
                 item.calcularSubtotal()));
         }
         
-        factura.append("========================================");
-        factura.append(String.format("Subtotal:          $%.2f", calcularSubtotal()));
-        factura.append(String.format("Impuesto (10%%):    $%.2f", calcularImpuesto()));
-        factura.append(String.format("TOTAL:             $%.2f", calcularTotal()));
-        factura.append("========================================");
+        factura.append("========================================\n");
+        factura.append(String.format("Subtotal:          $%.2f%n", calcularSubtotal()));
+        factura.append(String.format("TOTAL:             $%.2f%n", calcularTotal()));
+        factura.append("========================================\n");
         
         return factura.toString();
     }
